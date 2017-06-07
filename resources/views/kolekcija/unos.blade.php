@@ -21,11 +21,11 @@
 
       <div class="form-group">
         {{ Form::label('id_zanr', 'Žanr:') }}
-        {{ Form::select('id_zanr', $zanr,1) }}
+        {{ Form::select('id_zanr', $zanr) }}
       </div>
       <div class="form-group">
           {{ Form::label('godina', 'Godina:') }}
-          {{ Form::number( 'godina', Input::old('godina'), array('class' => 'form-control')) }}
+          {{ Form::selectRange('godina', 1900, 2017) }}
       </div>
       <div class="form-group">
           {{ Form::label('trajanje', 'Trajanje:') }}
@@ -43,5 +43,34 @@
 
 
     {{ Form::close() }}
+    
+ <?php $unosi = \Illuminate\Support\Facades\DB::table('filmovi')->get(); ?>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Slika</th>
+            <th>Naslov filma</th>
+            <th>Godina</th>
+            <th>Trajanje</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($unosi as $key => $value)
+        <tr>
+            
+
+            <td><?php echo '<img src="data:image/jpg;base64,'.base64_encode( $value->slika ).'"/>'; ?></td>
+            <td>{{ $value->naslov }}</td>
+            <td>{{ $value->godina }}</td>
+            <td>{{ $value->trajanje }}</td>
+            <td>{{ $value->slika }}</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
+    
   </body>
 </html>

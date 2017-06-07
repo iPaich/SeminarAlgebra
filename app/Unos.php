@@ -16,4 +16,7 @@ class Unos extends Model
      'trajanje',
      'slika',
      ];
+ 
+ 
+ 
 }

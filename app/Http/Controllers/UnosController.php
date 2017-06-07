@@ -1,10 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
+
 use App\Unos;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Validator;
+use Symfony\Component\Console\Input\Input;
+use App\Http\Controllers\Controller;
 
 class UnosController extends Controller
 {
@@ -16,27 +19,26 @@ class UnosController extends Controller
 
     public function store()
     {
+      /* $this->validate(request(), [
+        'naslov' => 'required',
+        'id_zanr' => 'required',
+        'godina' => 'required|max:2017|min:1900',
+        'trajanje' => 'required',
+        'slika' => 'required'
+           
+    ]); */
+           
       $unos = new Unos;
 
       $unos->naslov =request('naslov');
-      $unos->id_zanr =request('id_zanr');
+      $unos->id_zanr =request('id_zanr')+1;
       $unos->godina =request('godina');
       $unos->trajanje =request('trajanje');
       $unos->slika =request('slika');
 
       $unos->save();
-
+      
       return redirect('unos');
-
-
-
-      /*$this->validate($request, [
-       'naslov' => 'required|max:255',
-       'zanr' => 'required',
-       'trajanje' => 'required',
-       'godina' => 'required|min:1900|max:date("Y")',
-       'slika' => 'required',
-   ]);*/
 
 }
 }
