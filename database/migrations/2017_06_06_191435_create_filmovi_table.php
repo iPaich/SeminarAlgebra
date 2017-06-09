@@ -19,7 +19,7 @@ class CreateFilmoviTable extends Migration
           $table->integer('id_zanr')->unsigned();
           $table->integer('godina');
           $table->integer('trajanje');
-          $table->binary('slika');
+          $table->string('slika');
           $table->timestamps();
         });
     }

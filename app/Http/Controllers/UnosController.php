@@ -25,20 +25,33 @@ class UnosController extends Controller
         'godina' => 'required|max:2017|min:1900',
         'trajanje' => 'required',
         'slika' => 'required'
-           
+
     ]); */
-           
+
+    $path=request()->file('slika')->store('public/slike');
+
       $unos = new Unos;
 
       $unos->naslov =request('naslov');
       $unos->id_zanr =request('id_zanr')+1;
       $unos->godina =request('godina');
       $unos->trajanje =request('trajanje');
-      $unos->slika =request('slika');
+      $unos->slika= $path;
+      //$unos->slika =request('slika');
 
       $unos->save();
-      
+
+
       return redirect('unos');
 
 }
+
+public function destroy($id)
+{
+    $item = DB::findOrFail($id);
+    $item->delete();
+
+    return Redirect::route('/unos');
+}
+
 }

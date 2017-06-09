@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 Route::get('unos','UnosController@unos');
 Route::post('unos', 'UnosController@store');
+Route::delete('unos', array('uses' => 'UnosController@destroy', 'as' => 'obriši'));

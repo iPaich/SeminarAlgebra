@@ -1,4 +1,4 @@
-
+@extends ('layout')
 <!DOCTYPE html>
 
 <html>
@@ -8,16 +8,20 @@
     <meta charset="utf-8">
     <title>Forma</title>
   </head>
-  <h1> Forma </h1>
   <body>
+      @section ('content')
+      <div class="container">
+          <br>
+
+
     {{ Form::open(array('url' => 'unos', 'files' => true)) }}
 
-    <form method="POST" action="/unos">
-
+    <form method="POST" action="/unos" class="form-horizontal" enctype="multipart/form-data">
       <div class="form-group">
-          {{ Form::label('naslov', 'Naslov:') }}
-          {{ Form::text( 'naslov', Input::old('naslov'), array('class' => 'form-control')) }}
-      </div>
+          {{ Form::label('naslov','Naslov Filma:') }}
+          {{ Form::text( 'naslov', Input::old('naslov'),array('class' => 'form-control')) }}
+
+          </div>
 
       <div class="form-group">
         {{ Form::label('id_zanr', 'Žanr:') }}
@@ -25,7 +29,7 @@
       </div>
       <div class="form-group">
           {{ Form::label('godina', 'Godina:') }}
-          {{ Form::selectRange('godina', 1900, 2017) }}
+          {{ Form::selectRange('godina', 2017, 1900) }}
       </div>
       <div class="form-group">
           {{ Form::label('trajanje', 'Trajanje:') }}
@@ -43,7 +47,7 @@
 
 
     {{ Form::close() }}
-    
+
  <?php $unosi = \Illuminate\Support\Facades\DB::table('filmovi')->get(); ?>
 
   <table class="table table-striped table-bordered">
@@ -59,18 +63,21 @@
     <tbody>
         @foreach($unosi as $key => $value)
         <tr>
-            
 
-            <td><?php echo '<img src="data:image/jpg;base64,'.base64_encode( $value->slika ).'"/>'; ?></td>
+            <td><img src= "{{ Storage::url($value->slika) }}" </td>
             <td>{{ $value->naslov }}</td>
             <td>{{ $value->godina }}</td>
             <td>{{ $value->trajanje }}</td>
-            <td>{{ $value->slika }}</td>
+            <td>
+              {{ Form::open(['route' => ['obriši', $value->id], 'method' => 'delete']) }}
+              <button type="submit">Delete</button>
+              {{ Form::close() }}
+            </td>
         </tr>
         @endforeach
     </tbody>
 </table>
-
-    
+    </div>
+@endsection
   </body>
 </html>
