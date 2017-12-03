@@ -15,11 +15,11 @@ class CreateFilmoviTable extends Migration
     {
         Schema::create('filmovi', function (Blueprint $table) {
           $table->increments('id');
-          $table->string('naslov');
+          $table->string('naslov')->nullable();
           $table->integer('id_zanr')->unsigned();
           $table->integer('godina');
-          $table->integer('trajanje');
-          $table->string('slika');
+          $table->integer('trajanje')->nullable();
+          $table->string('slika')->nullable();
           $table->timestamps();
         });
     }

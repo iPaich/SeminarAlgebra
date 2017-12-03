@@ -11,9 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('kolekcija.index');
+Route::get('/',function(){
+    return view('kolekcija/index');
+});
+Route::get('index',function(){
+    return view('kolekcija/index');
 });
 Route::get('unos','UnosController@unos');
 Route::post('unos', 'UnosController@store');
-Route::delete('unos', array('uses' => 'UnosController@destroy', 'as' => 'obriši'));
+Route::delete('unos', [
+    'as' => 'unos.destroy',
+    'uses' => 'UnosController@destroy'
+]);
+Route::resource('dobar', 'DobarController');

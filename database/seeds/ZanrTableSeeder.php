@@ -26,6 +26,18 @@ class ZanrTableSeeder extends Seeder
             ),
             Array
             (
+                'naziv' => 'Triler',
+                'created_at' => DB::raw('now()'),
+                'updated_at' => DB::raw('now()')
+            ),
+            Array
+            (
+                'naziv' => 'Krimić',
+                'created_at' => DB::raw('now()'),
+                'updated_at' => DB::raw('now()')
+            ),
+            Array
+            (
                 'naziv' => 'Komedija',
                 'created_at' => DB::raw('now()'),
                 'updated_at' => DB::raw('now()')

@@ -81,7 +81,7 @@
             <td><?php echo e($value->godina); ?></td>
             <td><?php echo e($value->trajanje); ?></td>
             <td>
-              <?php echo e(Form::open(['route' => ['obriši', $value->id], 'method' => 'delete'])); ?>
+              <?php echo e(Form::open([ 'method'  => 'delete', 'route' => [ 'dobar.destroy', $value->id ] ])); ?>
 
               <button type="submit">Delete</button>
               <?php echo e(Form::close()); ?>

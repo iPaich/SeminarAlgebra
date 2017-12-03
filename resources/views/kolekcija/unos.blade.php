@@ -69,7 +69,7 @@
             <td>{{ $value->godina }}</td>
             <td>{{ $value->trajanje }}</td>
             <td>
-              {{ Form::open(['route' => ['obriši', $value->id], 'method' => 'delete']) }}
+              {{ Form::open([ 'method'  => 'delete', 'route' => [ 'dobar.destroy', $value->id ] ]) }}
               <button type="submit">Delete</button>
               {{ Form::close() }}
             </td>
